@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the GSB Feature Chute FPP feature.
+ */
+
+include_once 'gsb_feature_chute_fpp.features.inc';
