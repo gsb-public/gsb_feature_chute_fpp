@@ -8,12 +8,62 @@ include_once 'gsb_feature_chute_fpp.features.inc';
 
 /**
  * Implement hook_form_id_form_alter.
- *
- * @param $form
- * @param $form_state
  */
 function gsb_feature_chute_fpp_form_fieldable_panels_panes_entity_edit_form_alter(&$form, $form_state) {
   if ($form['#bundle'] == 'chute') {
+    global $user;
+
+    // Hide unneeded fields if the user is not an administrator.
+    if ($user->uid !== 1 && !in_array('administrator', $user->roles)) {
+      $form['field_chute_name']['#access'] = FALSE;
+      $form['field_chute_id']['#access'] = FALSE;
+      $form['field_chute_campaign_id']['#access'] = FALSE;
+    }
+
+    // Add javascript
     $form['#attached']['js'][] = drupal_get_path('module', 'gsb_feature_chute_fpp') . '/js/gsb_feature_chute_fpp.js';
+
+    // Add a validation method for the url.
+    $form['field_link_single']['#element_validate'][] = 'gsb_feature_chute_fpp_url_validate';
+  }
+}
+
+/**
+ * Implement validation function for the chute url.
+ */
+function gsb_feature_chute_fpp_url_validate($element, &$form_state, $form) {
+  $error = FALSE;
+  $language = $form_state['values']['language'];
+  $chute_url = $form_state['values']['field_link_single'][$language][0]['url'];
+
+  // See if it's a valid chute url first.
+  if (stristr($chute_url, 'admin.getchute.com/#/campaigns/')) {
+
+    // Get the id from the url.
+    $url_parts = explode('/', $chute_url);
+    $id = array_pop($url_parts);
+
+    // See if we get a valid json response.
+    $request = drupal_http_request('http://s3.amazonaws.com/store.getchute.com/' . $id);
+    if ($request->status_message == 'OK') {
+
+      // Get the values from the json response and set the corresponding fields
+      // to those values.
+      $chute_values = drupal_json_decode($request->data);
+      $form_state['values']['field_chute_name'][$language][0]['value'] = $chute_values['runner'];
+      $form_state['values']['field_chute_id'][$language][0]['value'] = $id;
+      $form_state['values']['field_chute_campaign_id'] = $chute_values['campaign_id'];
+    }
+    else {
+      $error = TRUE;
+    }
+  }
+  else {
+    $error = TRUE;
+  }
+
+  // If there was an error with the url then throw an error.
+  if ($error) {
+    form_error($element, t('The url is not a valid chute url. Please make sure you are copying the url from the display you would like to use.'));
   }
 }

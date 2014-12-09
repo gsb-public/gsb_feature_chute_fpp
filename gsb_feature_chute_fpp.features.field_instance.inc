@@ -30,7 +30,7 @@ function gsb_feature_chute_fpp_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_chute_campaign_id',
     'label' => 'Campaign ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'custom_add_another' => '',
       'custom_remove' => '',
@@ -72,7 +72,7 @@ function gsb_feature_chute_fpp_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_chute_id',
     'label' => 'ID',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
@@ -170,7 +170,7 @@ function gsb_feature_chute_fpp_field_default_field_instances() {
         'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
       ),
       'type' => 'computed',
-      'weight' => 5,
+      'weight' => 6,
     ),
     'workbench_access_field' => 0,
   );
@@ -195,7 +195,7 @@ function gsb_feature_chute_fpp_field_default_field_instances() {
     'entity_type' => 'fieldable_panels_pane',
     'field_name' => 'field_chute_name',
     'label' => 'Name',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'better_formats' => array(
         'allowed_formats' => array(
@@ -265,7 +265,7 @@ function gsb_feature_chute_fpp_field_default_field_instances() {
     'custom_remove' => '',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Choose your campaign, click on displays, click on your display and copy and paste the url from the browser.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -322,6 +322,7 @@ function gsb_feature_chute_fpp_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Campaign ID');
+  t('Choose your campaign, click on displays, click on your display and copy and paste the url from the browser.');
   t('Chute Display URL');
   t('ID');
   t('Name');

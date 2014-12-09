@@ -21,7 +21,7 @@ function gsb_feature_chute_fpp_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Metadata',
-    'weight' => '2',
+    'weight' => '3',
     'children' => array(
       0 => 'field_chute_name',
       1 => 'field_chute_id',
