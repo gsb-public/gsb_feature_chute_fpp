@@ -1,19 +1,27 @@
 (function ($) {
   Drupal.behaviors.gsbFeatureChuteFPP = {
     attach: function (context) {
+      // Wait for the form to show up.
+      var timer = setInterval(function() {
+        if ($(':input[name="field_link_single[und][0][url]"]').length) {
+          // Only add the icon if it doesn't already exist.
+          if (!$('span.chute-url-icon').length) {
+            // Add icon for validation.
+            $(':input[name="field_link_single[und][0][url]"]').after('<span class="chute-url-icon chute-invalid-url"></span>');
+          }
 
-      // Add icon for validation.
-      $(':input[name="field_link_single[und][0][url]"]').after('<span class="chute-url-icon chute-invalid-url"></span>');
+          // Validate the url on load.
+          Drupal.gsbFeatureChuteFPP.validate($(':input[name="field_link_single[und][0][url]"]').val());
 
-      // Validate the url on load.
-      Drupal.gsbFeatureChuteFPP.validate($(':input[name="field_link_single[und][0][url]"]').val());
+          // Check for keyup in url field
+          $(':input[name="field_link_single[und][0][url]"]').keyup(function(e) {
 
-      // Check for keyup in url field
-      $(':input[name="field_link_single[und][0][url]"]').keyup(function(e) {
-
-        // Make sure the url is valid
-        Drupal.gsbFeatureChuteFPP.validate($(this).val());
-      });
+            // Make sure the url is valid
+            Drupal.gsbFeatureChuteFPP.validate($(this).val());
+          });
+          clearInterval(timer);
+        }
+      }, 1000);
     }
   }
 

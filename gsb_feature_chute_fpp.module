@@ -10,6 +10,23 @@ include_once 'gsb_feature_chute_fpp.features.inc';
  * Implement hook_form_id_form_alter.
  */
 function gsb_feature_chute_fpp_form_fieldable_panels_panes_entity_edit_form_alter(&$form, $form_state) {
+  _gsb_feature_chute_fpp_chute_form_alter($form, $form_state);
+}
+
+/**
+ * Implement hook_form_form_id_alter().
+ */
+function gsb_feature_chute_fpp_form_fieldable_panels_panes_fieldable_panels_pane_content_type_edit_form_alter(&$form, $form_state) {
+  _gsb_feature_chute_fpp_chute_form_alter($form, $form_state);
+}
+
+/**
+ * Alter helper function.
+ * 
+ * @param $form
+ * @param $form_state
+ */
+function _gsb_feature_chute_fpp_chute_form_alter(&$form, $form_state) {
   if ($form['#bundle'] == 'chute') {
     global $user;
 
