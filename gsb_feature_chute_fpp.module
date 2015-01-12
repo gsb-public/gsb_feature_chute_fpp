@@ -84,3 +84,13 @@ function gsb_feature_chute_fpp_url_validate($element, &$form_state, $form) {
     form_error($element, t('The url is not a valid chute url. Please make sure you are copying the url from the display you would like to use.'));
   }
 }
+
+/**
+ * This adds javascript to load chute.
+ */
+function gsb_feature_chute_fpp_preprocess_fieldable_panels_pane(&$variables) {
+  if ($variables['elements']['#bundle'] != 'chute') {
+    return;
+  }
+  drupal_add_js(drupal_get_path('module', 'gsb_feature_chute_fpp') . '/js/gsb_feature_chute_fpp.chute.js', array('scope' => 'footer'));
+}
