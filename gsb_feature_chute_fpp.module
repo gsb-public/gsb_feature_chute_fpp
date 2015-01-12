@@ -69,7 +69,7 @@ function gsb_feature_chute_fpp_url_validate($element, &$form_state, $form) {
       $chute_values = drupal_json_decode($request->data);
       $form_state['values']['field_chute_name'][$language][0]['value'] = $chute_values['runner'];
       $form_state['values']['field_chute_id'][$language][0]['value'] = $id;
-      $form_state['values']['field_chute_campaign_id'] = $chute_values['campaign_id'];
+      $form_state['values']['field_chute_campaign_id'][0]['value'] = $chute_values['campaign_id'];
     }
     else {
       $error = TRUE;
