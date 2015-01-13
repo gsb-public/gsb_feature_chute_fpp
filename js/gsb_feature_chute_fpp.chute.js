@@ -2,7 +2,7 @@
   Drupal.behaviors.gsbFeatureChuteFPPChute = {
     attach: function (context) {
       // Find all chute panes
-      $('.gsb-feature-chute-fpp-placeholder').each(function() {
+      $('.gsb-feature-chute-fpp-placeholder:not(.gsb-feature-chute-fpp-placeholder-processed)', context).addClass('gsb-feature-chute-fpp-placeholder-processed').each(function() {
         // Get some values from the placeholder.
         var id = $(this).data('chute-id');
         var name = $(this).data('chute-name');
