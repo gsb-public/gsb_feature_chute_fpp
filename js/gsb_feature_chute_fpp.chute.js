@@ -6,6 +6,7 @@
         // Get some values from the placeholder.
         var id = $(this).data('chute-id');
         var name = $(this).data('chute-name');
+        var environment = ($(this).data('chute-environment')) ? $(this).data('chute-environment') + '/' : '';
         var campaign_id = $(this).data('chute-campaign-id');
 
         // Need the pane id so we can use this in our non jquery code.
@@ -24,7 +25,7 @@
         // Create the script element and add it to the page.
         var script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'http://static.getchute.com/display-runners/' + name + '/' + name + '.js';
+        script.src = 'http://static.getchute.com/display-runners/' + name + '/' + environment + name + '.js';
         script.setAttribute('data-chute-' + name, 'http://s3.amazonaws.com/store.getchute.com/' + id);
         document.getElementById(paneID).getElementsByClassName('gsb-feature-chute-fpp-placeholder')[0].appendChild(script);
 

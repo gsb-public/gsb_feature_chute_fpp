@@ -34,6 +34,7 @@ function _gsb_feature_chute_fpp_chute_form_alter(&$form, $form_state) {
     if ($user->uid !== 1 && !in_array('administrator', $user->roles)) {
       $form['field_chute_name']['#access'] = FALSE;
       $form['field_chute_id']['#access'] = FALSE;
+      $form['field_chute_environment']['#access'] = FALSE;
       $form['field_chute_campaign_id']['#access'] = FALSE;
     }
 
@@ -69,6 +70,7 @@ function gsb_feature_chute_fpp_url_validate($element, &$form_state, $form) {
       $chute_values = drupal_json_decode($request->data);
       $form_state['values']['field_chute_name'][$language][0]['value'] = $chute_values['runner'];
       $form_state['values']['field_chute_id'][$language][0]['value'] = $id;
+      $form_state['values']['field_chute_environment'][$language][0]['value'] = isset($chute_values['environment']) ? $chute_values['environment'] : '';
       $form_state['values']['field_chute_campaign_id'][$language][0]['value'] = $chute_values['campaign_id'];
     }
     else {
