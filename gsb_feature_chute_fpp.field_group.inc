@@ -23,9 +23,10 @@ function gsb_feature_chute_fpp_field_group_info() {
     'label' => 'Metadata',
     'weight' => '3',
     'children' => array(
-      0 => 'field_chute_name',
+      0 => 'field_chute_campaign_id',
       1 => 'field_chute_id',
-      2 => 'field_chute_campaign_id',
+      2 => 'field_chute_name',
+      3 => 'field_chute_environment',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

@@ -34,6 +34,9 @@ function gsb_feature_chute_fpp_strongarm() {
       'people_fpp' => array(
         'custom_settings' => FALSE,
       ),
+      'alumni_featured_content' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -44,7 +47,7 @@ function gsb_feature_chute_fpp_strongarm() {
       'display' => array(
         'title' => array(
           'default' => array(
-            'weight' => '1',
+            'weight' => '2',
             'visible' => FALSE,
           ),
         ),
