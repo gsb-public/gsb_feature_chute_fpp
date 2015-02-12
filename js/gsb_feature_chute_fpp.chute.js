@@ -35,7 +35,7 @@
         var script = document.createElement('script');
         script.type = 'text/javascript';
         script.src = '//static.getchute.com/display-runners/' + name + '/' + environment + name + '.js';
-        script.setAttribute('data-chute-' + name, 'http://s3.amazonaws.com/store.getchute.com/' + id);
+        script.setAttribute('data-chute-' + name, '//s3.amazonaws.com/store.getchute.com/' + id);
         placeholder.appendChild(script);
       });
     }
