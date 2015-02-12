@@ -27,14 +27,14 @@
 
         // Create the image element and add it to the page.
         var image = document.createElement('img');
-        image.src = 'http://pixel.getchute.com/?dID=' + id + '&cID=' + campaign_id + '&eTp=view_served';
+        image.src = '//pixel.getchute.com/?dID=' + id + '&cID=' + campaign_id + '&eTp=view_served';
         image.setAttribute('style', 'wdith:0; height:0');
         placeholder.appendChild(image);
 
         // Create the script element and add it to the page.
         var script = document.createElement('script');
         script.type = 'text/javascript';
-        script.src = 'http://static.getchute.com/display-runners/' + name + '/' + environment + name + '.js';
+        script.src = '//static.getchute.com/display-runners/' + name + '/' + environment + name + '.js';
         script.setAttribute('data-chute-' + name, 'http://s3.amazonaws.com/store.getchute.com/' + id);
         placeholder.appendChild(script);
       });
