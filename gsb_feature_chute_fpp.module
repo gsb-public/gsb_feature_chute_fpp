@@ -27,7 +27,7 @@ function gsb_feature_chute_fpp_form_fieldable_panels_panes_fieldable_panels_pane
  * @param $form_state
  */
 function _gsb_feature_chute_fpp_chute_form_alter(&$form, $form_state) {
-  if ($form['#bundle'] == 'chute') {
+  if (!empty($form['#bundle']) && $form['#bundle'] == 'chute') {
     global $user;
 
     // Hide unneeded fields if the user is not an administrator.
